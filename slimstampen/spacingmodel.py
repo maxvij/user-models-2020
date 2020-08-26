@@ -237,10 +237,11 @@ class SpacingModel(object):
         return(min(rt, max_rt))
 
 
-    def export_data(self, path):
+    def export_data(self, path = None):
         # type: (str) -> DataFrame
         """
-        Save the response data to the specified csv file, and return a copy of the pandas DataFrame
+        Save the response data to the specified csv file, and return a copy of the pandas DataFrame.
+        If no path is specified, return a CSV-formatted copy of the data instead.
         """
 
         def calc_rof(row):
@@ -258,7 +259,9 @@ class SpacingModel(object):
         dat.index.name = "trial"
         dat.index = dat.index + 1
 
-        # Save to CSV file
-        dat.to_csv(path, encoding="UTF-8")
-
-        return(dat)
+        # Save to CSV file if a path was specified, otherwise return the CSV-formatted output
+        if path is not None:
+            dat.to_csv(path, encoding="UTF-8")
+            return(dat)
+        
+        return(dat.to_csv())
