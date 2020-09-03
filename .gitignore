@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Node modules
+/react-flask-app/node_modules/
+
+# Notebook
+.ipynb_checkpoints
+
 # C extensions
 *.so
 .idea
